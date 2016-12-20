@@ -10,7 +10,8 @@
     var pathname = location.pathname;
     var secondSlashIndex = pathname.indexOf('/', 1);
     var path = pathname.slice(secondSlashIndex);
-    var basePath = pathname.slice(0, secondSlashIndex);
+    // include ending slash because otherwise 404 is returned
+    var basePath = pathname.slice(0, secondSlashIndex + 1);
     var url = new URL(location);
 
     url.pathname = basePath;
