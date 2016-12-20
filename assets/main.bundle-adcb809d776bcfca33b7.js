@@ -26728,12 +26728,12 @@
 	            ),
 	            _react2.default.createElement(
 	              'a',
-	              { href: '', target: '_blank' },
+	              { href: 'https://github.com/raulsebastianmihaila/crizmas-mvc', target: '_blank' },
 	              'Github'
 	            ),
 	            _react2.default.createElement(
 	              'a',
-	              { href: '', target: '_blank' },
+	              { href: 'https://www.npmjs.com/package/crizmas-mvc', target: '_blank' },
 	              'NPM'
 	            )
 	          ),
@@ -30918,4 +30918,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.bundle-50db77bbd6099ff53ec6.js.map
+//# sourceMappingURL=main.bundle-adcb809d776bcfca33b7.js.map
