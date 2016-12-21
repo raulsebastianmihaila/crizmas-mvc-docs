@@ -2533,12 +2533,18 @@
 	 * will remain to ensure logic does not differ in production.
 	 */
 
-	function invariant(condition, format, a, b, c, d, e, f) {
-	  if (false) {
+	var validateFormat = function validateFormat(format) {};
+
+	if (false) {
+	  validateFormat = function validateFormat(format) {
 	    if (format === undefined) {
 	      throw new Error('invariant requires an error message argument');
 	    }
-	  }
+	  };
+	}
+
+	function invariant(condition, format, a, b, c, d, e, f) {
+	  validateFormat(format);
 
 	  if (!condition) {
 	    var error;
@@ -22152,7 +22158,8 @@
 	  var _utils = utils,
 	      isObj = _utils.isObj,
 	      isFunc = _utils.isFunc,
-	      isPromise = _utils.isPromise;
+	      isPromise = _utils.isPromise,
+	      resolveThenable = _utils.resolveThenable;
 
 	  var hasOwnProp = Function.prototype.call.bind(Object.prototype.hasOwnProperty);
 
@@ -22326,7 +22333,7 @@
 	      return pendingPromise;
 	    }
 
-	    var pendingWrapperPromise = ignore(_promise2.default.resolve(ignore(promise)).then(function (res) {
+	    var pendingWrapperPromise = ignore(resolveThenable(ignore(promise)).then(function (res) {
 	      unsetPendingProp(pendingWrapperPromise, promise);
 	      notify();
 
@@ -22444,7 +22451,7 @@
 	    // trigger the notifications twice, which is what we want to avoid.
 	    // if the promise will be used separately again, a wrapper promise will be created
 	    // then and it will be reusable, so we don't have to create it in advance.
-	    return observePromise(_promise2.default.resolve(ignore(promise)).then(cb), obj, key);
+	    return observePromise(resolveThenable(ignore(promise)).then(cb), obj, key);
 	  }
 
 	  function observeObject(observableObj, visitedObjects, visitedFunctions) {
@@ -25313,6 +25320,10 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
 
+	var _promise = __webpack_require__(275);
+
+	var _promise2 = _interopRequireDefault(_promise);
+
 	var _typeof2 = __webpack_require__(36);
 
 	var _typeof3 = _interopRequireDefault(_typeof2);
@@ -25336,10 +25347,19 @@
 	    return isObj(val) && isFunc(val.then);
 	  }
 
+	  function resolveThenable(thenable) {
+	    if (thenable instanceof _promise2.default) {
+	      return thenable;
+	    }
+
+	    return _promise2.default.resolve(thenable);
+	  }
+
 	  var moduleExports = {
 	    isObj: isObj,
 	    isFunc: isFunc,
-	    isPromise: isPromise
+	    isPromise: isPromise,
+	    resolveThenable: resolveThenable
 	  };
 
 	  if (isModule) {
@@ -26467,13 +26487,14 @@
 	  }
 
 	  var _utils = utils,
-	      isPromise = _utils.isPromise;
+	      isPromise = _utils.isPromise,
+	      resolveThenable = _utils.resolveThenable;
 
 
 	  function awaitFor(val, success, error) {
 	    if (isPromise(val)) {
 	      // make sure thenables are converted
-	      return _promise2.default.resolve(val).then(success, error);
+	      return resolveThenable(val).then(success, error);
 	    }
 
 	    if (success) {
@@ -27542,7 +27563,7 @@
 	    _react2.default.createElement(
 	      'p',
 	      null,
-	      'The code is written in ES2016, so it\'s possible that you need transcompilation. If that is the case, you need to include the framework files in your transcompilation process (you can use a regexp that starts with crizmas-).'
+	      'The code is written in ES2016 (without modules), so it\'s possible that you need transcompilation. If that is the case, you need to include the framework files in your transcompilation process (you can use a regexp that starts with crizmas-).'
 	    ),
 	    _react2.default.createElement(
 	      'p',
@@ -30918,4 +30939,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.bundle-adcb809d776bcfca33b7.js.map
+//# sourceMappingURL=main.bundle-68a29887c587cbc8315a.js.map
