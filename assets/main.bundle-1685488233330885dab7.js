@@ -25953,6 +25953,14 @@
 	    return url.pathname;
 	  }
 
+	  function getFullPath(path, basePath) {
+	    if (basePath && path.startsWith('/')) {
+	      return basePath + path;
+	    }
+
+	    return path;
+	  }
+
 	  function Router(_ref3) {
 	    var _this = this;
 
@@ -25971,8 +25979,7 @@
 	      return validateUnresolvedAbstractRouteFragment(abstractRouteFragment);
 	    });
 
-	    basePath = basePath && normalizeAbsolutePath(basePath);
-
+	    this.basePath = basePath = basePath && normalizeAbsolutePath(basePath);
 	    this.currentRouteFragments = [];
 	    this.isTransitioning = false;
 	    this.currentRouteFragment = null;
@@ -26165,11 +26172,7 @@
 	    };
 
 	    var transitionTo = function transitionTo(path) {
-	      if (basePath && path.startsWith('/')) {
-	        path = basePath + path;
-	      }
-
-	      history.push(path);
+	      history.push(getFullPath(path, basePath));
 	    };
 
 	    var getRootElement = function getRootElement(routeFragment) {
@@ -26305,17 +26308,18 @@
 	      key: 'render',
 	      value: function render() {
 	        var className = this.props.className || '';
+	        var router = this.context.router;
 
-	        if (this.context.router.isPathActive(this.props.to)) {
+	        if (router.isPathActive(this.props.to)) {
 	          className += 'is-active ';
 	        }
 
-	        if (this.context.router.isDescendantPathActive(this.props.to)) {
+	        if (router.isDescendantPathActive(this.props.to)) {
 	          className += 'is-descendant-active';
 	        }
 
 	        return React.DOM.a({
-	          href: this.props.to,
+	          href: getFullPath(this.props.to, router.basePath),
 	          onClick: this.onClick,
 	          className: className
 	        }, this.props.children);
@@ -30982,4 +30986,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.bundle-9131836615ee442a1fe5.js.map
+//# sourceMappingURL=main.bundle-1685488233330885dab7.js.map
