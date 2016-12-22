@@ -27106,6 +27106,9 @@
 	      link: 'input.isPending',
 	      label: 'input.isPending'
 	    }, {
+	      link: 'input.isPendingBlocked',
+	      label: 'input.isPendingBlocked'
+	    }, {
 	      link: 'input.isBlocked',
 	      label: 'input.isBlocked'
 	    }, {
@@ -27646,7 +27649,7 @@
 	      _react2.default.createElement(
 	        'p',
 	        null,
-	        'The controller stands between the view and the model, as the UI should\'t try to modify the state of the model through direct interaction. The controller asks the model to update itself based on certain input or actions. The controller can also provide instructions to the view (preferably in a reactive fashion) and can create the connection between the current context of the application and other parts of the application, for instance by initiating route transitioning.'
+	        'The controller stands between the view and the model, as the UI shouldn\'t try to modify the state of the model through direct interaction. The controller asks the model to update itself based on certain input or actions. The controller can also provide instructions to the view (preferably in a reactive fashion) and can create the connection between the current context of the application and other parts of the application, for instance by initiating route transitioning.'
 	      ),
 	      'js/controllers/flowers-controller.js',
 	      _react2.default.createElement(_code2.default, { text: '\n      import Mvc from \'crizmas-mvc\';\n      import Form, {validation} from \'crizmas-form\';\n\n      import flowers, {Flower} from \'js/models/flowers-model\';\n\n      export default Mvc.controller(class HomeController {\n        constructor() {\n          this.flowers = flowers;\n\n          this.form = new Form({\n            children: [\n              {\n                name: \'name\',\n                validate: validation(\n                  validation.required(),\n                  validation.minLength(5),\n                  ({input}) => {\n                    const value = input.getValue();\n\n                    if (value) {\n                      return Flower.validateName(value);\n                    }\n                  }\n                )\n              },\n\n              {\n                name: \'daysLeft\',\n                validate: validation(validation.required(), validation.min(10))\n              }\n            ],\n\n            actions: {\n              submit: () => {\n                const formResult = this.form.getResult();\n\n                this.addFlower(formResult.name, formResult.daysLeft);\n                this.form.clear();\n              }\n            }\n          });\n        }\n\n        addFlower(name, daysLeft) {\n          this.flowers.addFlower(name, daysLeft);\n        }\n\n        randomizeAges() {\n          this.flowers.randomizeAges();\n        }\n      });\n    ' }),
@@ -28025,7 +28028,7 @@
 	      null,
 	      'To be more precise, the promise that they return is not really the promise that is created in ',
 	      _react2.default.createElement(_ticks2.default, { text: 'asyncMethod2' }),
-	      ' because in order to trigger the notification, the promise must be wrapped in another promise that results from the original promise\'s reaction that handles the observation mechanism. Also, an observed function is not really the original function, but a proxy. This proxy, however, has a high degree of transparency, which means that if you interact with it, for instance, by setting a property, the property will be set on the original function (which is the proxy\'s target). However, if you observe a function, and later you observe the same (initial) function again, the two resulted functions are identical. Or if you observe an already observed function, the result is the already observed function. An observed object is the same value as the original object. Basically its methods are replaced with the observed ones. If you want to add a new method to an observed object, after you observed the object, you must reobserve the object so that the new method is observed. Or you can just add the already observed function as a method.'
+	      ' because in order to trigger the notification, the promise must be wrapped in another promise that results from the original promise\'s reaction that handles the observation mechanism. Also, an observed function is not really the original function, but a proxy. This proxy, however, has a high degree of transparency, which means that if you interact with it, for instance, by setting a property, the property will be set on the original function (which is the proxy\'s target). However, if you observe a function, and later you observe the same (initial) function again, the two resulted functions are identical. Or if you observe an already observed function, the result is the already observed function. An observed object is the same value as the original object. Basically its methods are replaced with the observed ones. If you want to add a new method to an observed object, after you observed the object, and observe the method, you must reobserve the object so that the new method is observed. Or you can just add the already observed function as a method.'
 	    ),
 	    _react2.default.createElement(
 	      'p',
@@ -28194,6 +28197,11 @@
 	      _react2.default.createElement(
 	        'li',
 	        null,
+	        'Mounts the router, if one was passed.'
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
 	        'Can be used to remount an unmounted mvc instance.'
 	      )
 	    ),
@@ -28205,6 +28213,11 @@
 	        'li',
 	        null,
 	        'Unmounts an mvc instance that can later be remounted.'
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        'Unmounts the router, if one was passed.'
 	      ),
 	      _react2.default.createElement(
 	        'li',
@@ -28673,8 +28686,11 @@
 	      ', ',
 	      _react2.default.createElement(_ticks2.default, {
 	        text: 'errors' }),
+	      ', ',
+	      _react2.default.createElement(_ticks2.default, { text: 'isPendingBlocked' }),
 	      ' and ',
-	      _react2.default.createElement(_ticks2.default, { text: 'isBlocked' }),
+	      _react2.default.createElement(_ticks2.default, {
+	        text: 'isBlocked' }),
 	      ' properties also depend on the state of the child inputs, while the ',
 	      _react2.default.createElement(_ticks2.default, { text: 'isSubmitted' }),
 	      ' property doesn\'t.'
@@ -28770,8 +28786,10 @@
 	      ' method can be called in order to mark the input as input pending. When the ',
 	      _react2.default.createElement(_ticks2.default, { text: 'onChange' }),
 	      ' method is called, isInputPending is updated (if it has no children with isInputPending true, isInputPending is set to false). The input also has an ',
+	      _react2.default.createElement(_ticks2.default, { text: 'isPendingBlocked' }),
+	      ' property whose value is true while the input is pending or is input pending. If the form is pending blocked it cannot be reset or cleared. Whether or not the pending blocking state depends on the pending and input pending states can be configured. The input also has an ',
 	      _react2.default.createElement(_ticks2.default, { text: 'isBlocked' }),
-	      ' property whose value is true while the input either is pending, is input pending or has errors. If the form is blocked it cannot be submitted, reset or cleared. Whether or not the blocking state depends on the pending and input pending states can be configured, but a form will always be blocked if it has errors.'
+	      ' property whose value is true while the input either is pending blocked or has errors. If the form is blocked it cannot be submitted.'
 	    ),
 	    _react2.default.createElement(
 	      'h4',
@@ -28893,7 +28911,12 @@
 	          _react2.default.createElement(
 	            'li',
 	            null,
-	            'If it\'s falsy and the type of the input is numeric, it\'s used when the input is cleared instead of the empty string.'
+	            'If the input is numeric and it\'s cleared, instead of using the empty string as the new value, the initialValue can be used.'
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'In order to use the initialValue, it must be falsy. If it\'s undefined, then undefined is used, otherwise null is used.'
 	          )
 	        )
 	      ),
@@ -29117,7 +29140,7 @@
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'An input configuration can contain a name, initialValue, getValue, setValue, validate, init, onFormChange, preventInputPendingBlocking, preventPendingBlocking an actions object and a children array of configuration options.'
+	        'An input configuration can contain a name, initialValue, getValue, setValue, validate, init, onFormChange, preventInputPendingBlocking, preventPendingBlocking, an actions object and a children array of configuration objects.'
 	      ),
 	      _react2.default.createElement(
 	        'li',
@@ -29137,12 +29160,12 @@
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'If preventInputPendingBlocking is true, the isBlocked property doesn\'t depend on the isInputPending property.'
+	        'If preventInputPendingBlocking is true, the isPendingBlocked property doesn\'t depend on the isInputPending property.'
 	      ),
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'If preventPendingBlocking is true, the isBlocked property doesn\'t depend on the isPending property.'
+	        'If preventPendingBlocking is true, the isPendingBlocked property doesn\'t depend on the isPending property.'
 	      ),
 	      _react2.default.createElement(
 	        'li',
@@ -29375,6 +29398,31 @@
 	        'If needed this can be used to disable an input with async validation.'
 	      )
 	    ),
+	    _react2.default.createElement(_api2.default, { id: 'input.isPendingBlocked', text: 'input.isPendingBlocked' }),
+	    _react2.default.createElement(
+	      'ul',
+	      { className: 'simple-list' },
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        'This is true if the input is pending or it\'s input pending.'
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        'If the preventInputPendingBlocking option is true in the configuration then isPendingBlocked doesn\'t depend on isInputPending.'
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        'If the preventPendingBlocking option is true in the configuration then isPendingBlocked doesn\'t depend on isPending.'
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        'If it\'s true it prevents resetting and clearing the input.'
+	      )
+	    ),
 	    _react2.default.createElement(_api2.default, { id: 'input.isBlocked', text: 'input.isBlocked' }),
 	    _react2.default.createElement(
 	      'ul',
@@ -29382,22 +29430,12 @@
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'This is true if the input has errors or it\'s pending or it\'s input pending.'
+	        'This is true if the input has errors or it\'s pending blocked.'
 	      ),
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'If the preventInputPendingBlocking option is true in the configuration then isBlocked doesn\'t depend on isInputPending.'
-	      ),
-	      _react2.default.createElement(
-	        'li',
-	        null,
-	        'If the preventPendingBlocking option is true in the configuration then isBlocked doesn\'t depend on isPending.'
-	      ),
-	      _react2.default.createElement(
-	        'li',
-	        null,
-	        'If it\'s true it prevents submission, resetting and clearing the input.'
+	        'If it\'s true it prevents submission.'
 	      )
 	    ),
 	    _react2.default.createElement(_api2.default, { id: 'input.getValue', text: 'input.getValue()' }),
@@ -29477,7 +29515,7 @@
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'Calls the validate method of the children inputs. Performs the validation on the input by calling the validate method option from the configuration, passing it an object with the event, target and input. If any of the validation functions involved in this process returns a promise, the validate method returns a promise. The validation process updates the hasError and errors properties, either syncrhonously or asynchronously, when all the validation promises are settled.'
+	        'Calls the validate method of the children inputs. Performs the validation on the input by calling the validate method option from the configuration, passing it an object with the event, target and input. If any of the validation functions involved in this process returns a promise, the validate method returns a promise. The validation process updates the hasError and errors properties, either synchronously or asynchronously, when all the validation promises are settled.'
 	      ),
 	      _react2.default.createElement(
 	        'li',
@@ -29566,7 +29604,7 @@
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'This is the onFormChange function from the actions configuration.'
+	        'This is the onFormChange function from the configuration.'
 	      ),
 	      _react2.default.createElement(
 	        'li',
@@ -29708,7 +29746,7 @@
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'If the input is blocked, it does nothing.'
+	        'If the input is pending blocked, it does nothing.'
 	      ),
 	      _react2.default.createElement(
 	        'li',
@@ -29738,7 +29776,7 @@
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'If the input is not blocked after validating and if there is a passed reset action, it calls the reset action.'
+	        'If the input is not pending blocked after validating and if there is a passed reset action, it calls the reset action.'
 	      )
 	    ),
 	    _react2.default.createElement(_api2.default, { id: 'input.clear', text: 'input.clear()' }),
@@ -29748,7 +29786,7 @@
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'If the input is blocked, it does nothing.'
+	        'If the input is pending blocked, it does nothing.'
 	      ),
 	      _react2.default.createElement(
 	        'li',
@@ -29783,7 +29821,7 @@
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'If the input is not blocked after validating and if there is a passed clear action, it calls the clear action.'
+	        'If the input is not pending blocked after validating and if there is a passed clear action, it calls the clear action.'
 	      )
 	    ),
 	    _react2.default.createElement(_api2.default, { id: 'Form.asyncValidationError', text: 'Form.asyncValidationError' }),
@@ -30431,6 +30469,11 @@
 	      _react2.default.createElement(
 	        'li',
 	        null,
+	        'The controller function can return a promise that is fulfilled with the controller object.'
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
 	        'If the controller object is an observed object, it is rooted before the route fragment is entered and unrooted when the route fragment is left.'
 	      ),
 	      _react2.default.createElement(
@@ -30783,7 +30826,7 @@
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'The abstractPath.'
+	        'The abstract path.'
 	      )
 	    ),
 	    _react2.default.createElement(_api2.default, { id: 'routeFragment.urlPath', text: 'routeFragment.urlPath' }),
@@ -30925,7 +30968,7 @@
 	    _react2.default.createElement(
 	      'p',
 	      null,
-	      'The promise queue is a queue of promises that allows us to discard previous pending promises when we have a new promise that we\'re interested in. The add method returns a promise (the queue promise) that is locked on the last promise that was added. If a previous promise is fulfilled before the last promise is settled, the update callback is called. If a previous promise is rejected before the last promise is settled, the catch callback is called and the queue promise is rejected. If all goes well, when the last promise is settled, the queue promise is settled and matches the last promise\'s state. If the queue promise is fulfilled, the done callback is called, otherwise the catch callback is called. If the add method is called again before the queue promise is settled the new promise becomes the last promise and the add method returns the same queue promise. If the add method is called again after the queue promise was settled a new queue promise is created. The object argument is optional.'
+	      'The promise queue is a queue of promises that allows us to discard previous pending promises when we have a new promise that we\'re interested in. The add method returns a promise (the queue promise) that will match the state of the last promise that was added. If a previous promise is fulfilled before the last promise is settled, the update callback is called. If a previous promise is rejected before the last promise is settled, the catch callback is called and the queue promise is rejected. If all goes well, when the last promise is settled, the queue promise is settled and matches the last promise\'s state. If the queue promise is fulfilled, the done callback is called, otherwise the catch callback is called. If the add method is called again before the queue promise is settled the new promise becomes the last promise and the add method returns the same queue promise. If the add method is called again after the queue promise was settled a new queue promise is created. The object argument is optional.'
 	    ),
 	    _react2.default.createElement(
 	      'p',
@@ -30939,4 +30982,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.bundle-68a29887c587cbc8315a.js.map
+//# sourceMappingURL=main.bundle-9131836615ee442a1fe5.js.map
