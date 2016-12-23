@@ -26772,14 +26772,14 @@
 	          'div',
 	          { className: 'main' },
 	          _react2.default.createElement(_contentsMenu2.default, { list: _contents2.default }),
+	          this.state.submenu && _react2.default.createElement(_contentsSubmenu2.default, { list: this.state.submenu }),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'content', ref: function ref(content) {
 	                return _this2.content = content;
 	              } },
 	            this.props.children
-	          ),
-	          this.state.submenu && _react2.default.createElement(_contentsSubmenu2.default, { list: this.state.submenu })
+	          )
 	        )
 	      );
 	    }
@@ -27371,9 +27371,13 @@
 	        'div',
 	        { className: className },
 	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.onExpand },
-	          '\u2630'
+	          'div',
+	          { className: 'button-wrapper' },
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.onExpand },
+	            '\u2630'
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -30986,4 +30990,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.bundle-1685488233330885dab7.js.map
+//# sourceMappingURL=main.bundle-b82e7acbe4f69cead1ab.js.map
