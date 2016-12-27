@@ -29141,14 +29141,14 @@
 	      ),
 	      ' sections before jumping into API details.'
 	    ),
-	    _react2.default.createElement(_api2.default, { id: 'Form', text: '\n    import Form from \'crizmas-form\';\n    // in ES5, Form is window.CrizmasForm\n\n    const form = new Form({\n      preventInputPendingBlocking: true,\n      preventPendingBlocking: true,\n\n      children: [\n        {\n          name: \'x\',\n          initialValue: 3\n        },\n        {\n          name: \'y\',\n\n          getValue() {\n            return model.y;\n          },\n\n          setValue(value) {\n            model.setY(value);\n          },\n\n          validate({event}) {\n            if (event === \'submit\') {\n              return model.validateY();\n            }\n          }\n        }\n      ],\n\n      init() {\n        console.log(\'input created\');\n      },\n\n      onFormChange() {\n        console.log(\'an input changed\');\n      },\n\n      actions: {\n        submit() {\n          console.log(\'result\', form.getResult());\n        },\n\n        clear() {\n          console.log(\'clearing\');\n        },\n\n        reset() {\n          console.log(\'resetting\');\n        },\n\n        anotherAction() {\n          console.log(\'another action\');\n        }\n      }\n    });\n  ' }),
+	    _react2.default.createElement(_api2.default, { id: 'Form', text: '\n    import Form from \'crizmas-form\';\n    // in ES5, Form is window.CrizmasForm\n\n    const form = new Form({\n      preventInputPendingBlocking: true,\n      preventPendingBlocking: true,\n\n      children: [\n        {\n          name: \'x\',\n          initialValue: 3\n        },\n        {\n          name: \'y\',\n          clearValue: \'\',\n\n          getValue() {\n            return model.y;\n          },\n\n          setValue(value) {\n            model.setY(value);\n          },\n\n          validate({event}) {\n            if (event === \'submit\') {\n              return model.validateY();\n            }\n          }\n        }\n      ],\n\n      init() {\n        console.log(\'input created\');\n      },\n\n      onFormChange() {\n        console.log(\'an input changed\');\n      },\n\n      actions: {\n        submit() {\n          console.log(\'result\', form.getResult());\n        },\n\n        clear() {\n          console.log(\'clearing\');\n        },\n\n        reset() {\n          console.log(\'resetting\');\n        },\n\n        anotherAction() {\n          console.log(\'another action\');\n        }\n      }\n    });\n  ' }),
 	    _react2.default.createElement(
 	      'ul',
 	      { className: 'simple-list' },
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'An input configuration can contain a name, initialValue, getValue, setValue, validate, init, onFormChange, preventInputPendingBlocking, preventPendingBlocking, an actions object and a children array of configuration objects.'
+	        'An input configuration can contain a name, initialValue, getValue, setValue, validate, clearValue, init, onFormChange, preventInputPendingBlocking, preventPendingBlocking, an actions object and a children array of configuration objects.'
 	      ),
 	      _react2.default.createElement(
 	        'li',
@@ -29164,6 +29164,11 @@
 	        'li',
 	        null,
 	        'init is called when the input is created.'
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        'If clearValue is provided it\'s used when clearing the input.'
 	      ),
 	      _react2.default.createElement(
 	        'li',
@@ -29804,7 +29809,7 @@
 	      _react2.default.createElement(
 	        'li',
 	        null,
-	        'If its initial value is truthy, it sets it to null.'
+	        'If the clear value was passed, sets the initial value to the clear value. Otherwise, if its initial value is truthy, it sets it to null.'
 	      ),
 	      _react2.default.createElement(
 	        'li',
@@ -30990,4 +30995,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.bundle-b82e7acbe4f69cead1ab.js.map
+//# sourceMappingURL=main.bundle-0e8c6e8d4a747913332e.js.map
