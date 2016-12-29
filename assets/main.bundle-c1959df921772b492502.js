@@ -28163,7 +28163,7 @@
 	      ),
 	      ' sections before jumping into API details.'
 	    ),
-	    _react2.default.createElement(_api2.default, { id: 'Mvc', text: '\n    import Mvc from \'crizmas-mvc\';\n    // in ES5, Mvc is window.CrizmasMvc\n\n    const mvc = new Mvc({\n      router: new Router({routes: []}),\n      component: ReactComponent, // or element: <ReactComponent />\n      domElement: document.querySelector(\'#app\')\n    });\n  ' }),
+	    _react2.default.createElement(_api2.default, { id: 'Mvc', text: '\n    import Mvc from \'crizmas-mvc\';\n    // in ES5, Mvc is window.crizmas.Mvc\n\n    const mvc = new Mvc({\n      router: new Router({routes: []}),\n      component: ReactComponent, // or element: <ReactComponent />\n      domElement: document.querySelector(\'#app\')\n    });\n  ' }),
 	    _react2.default.createElement(
 	      'ul',
 	      { className: 'simple-list' },
@@ -28870,7 +28870,7 @@
 	    _react2.default.createElement(
 	      'b',
 	      null,
-	      _react2.default.createElement(_code2.default, { bold: true, text: '\n      import {Input} from \'crizmas-components\';\n      // in ES5, Input is window.CrizmasInput;\n\n      <Input type="integer" {...someCrizmasInput} />\n\n      // if getValue is used, instead of the automatically created value property,\n      // then the result of getValue must be passed explicitly\n      <Input type="integer" {...someCrizmasInput} value={someCrizmasInput.getValue()} />\n    ' })
+	      _react2.default.createElement(_code2.default, { bold: true, text: '\n      import {Input} from \'crizmas-components\';\n      // in ES5, Input is window.crizmas.Input;\n\n      <Input type="integer" {...someCrizmasInput} />\n\n      // if getValue is used, instead of the automatically created value property,\n      // then the result of getValue must be passed explicitly\n      <Input type="integer" {...someCrizmasInput} value={someCrizmasInput.getValue()} />\n    ' })
 	    ),
 	    _react2.default.createElement(
 	      'p',
@@ -29141,7 +29141,7 @@
 	      ),
 	      ' sections before jumping into API details.'
 	    ),
-	    _react2.default.createElement(_api2.default, { id: 'Form', text: '\n    import Form from \'crizmas-form\';\n    // in ES5, Form is window.CrizmasForm\n\n    const form = new Form({\n      preventInputPendingBlocking: true,\n      preventPendingBlocking: true,\n\n      children: [\n        {\n          name: \'x\',\n          initialValue: 3\n        },\n        {\n          name: \'y\',\n          clearValue: \'\',\n\n          getValue() {\n            return model.y;\n          },\n\n          setValue(value) {\n            model.setY(value);\n          },\n\n          validate({event}) {\n            if (event === \'submit\') {\n              return model.validateY();\n            }\n          }\n        }\n      ],\n\n      init() {\n        console.log(\'input created\');\n      },\n\n      onFormChange() {\n        console.log(\'an input changed\');\n      },\n\n      actions: {\n        submit() {\n          console.log(\'result\', form.getResult());\n        },\n\n        clear() {\n          console.log(\'clearing\');\n        },\n\n        reset() {\n          console.log(\'resetting\');\n        },\n\n        anotherAction() {\n          console.log(\'another action\');\n        }\n      }\n    });\n  ' }),
+	    _react2.default.createElement(_api2.default, { id: 'Form', text: '\n    import Form from \'crizmas-form\';\n    // in ES5, Form is window.crizmas.Form\n\n    const form = new Form({\n      preventInputPendingBlocking: true,\n      preventPendingBlocking: true,\n\n      children: [\n        {\n          name: \'x\',\n          initialValue: 3\n        },\n        {\n          name: \'y\',\n          clearValue: \'\',\n\n          getValue() {\n            return model.y;\n          },\n\n          setValue(value) {\n            model.setY(value);\n          },\n\n          validate({event}) {\n            if (event === \'submit\') {\n              return model.validateY();\n            }\n          }\n        }\n      ],\n\n      init() {\n        console.log(\'input created\');\n      },\n\n      onFormChange() {\n        console.log(\'an input changed\');\n      },\n\n      actions: {\n        submit() {\n          console.log(\'result\', form.getResult());\n        },\n\n        clear() {\n          console.log(\'clearing\');\n        },\n\n        reset() {\n          console.log(\'resetting\');\n        },\n\n        anotherAction() {\n          console.log(\'another action\');\n        }\n      }\n    });\n  ' }),
 	    _react2.default.createElement(
 	      'ul',
 	      { className: 'simple-list' },
@@ -29857,7 +29857,7 @@
 	        'The same as new Form(config) except that it doesn\'t do the initial validation.'
 	      )
 	    ),
-	    _react2.default.createElement(_api2.default, { id: 'validation', text: '\n    import Form, {validation} from \'crizmas-form\';\n    // in ES5, validation is window.crizmasValidation\n\n    const form = new Form({\n      validate: validation(...funcs)\n    });\n  ' }),
+	    _react2.default.createElement(_api2.default, { id: 'validation', text: '\n    import Form, {validation} from \'crizmas-form\';\n    // in ES5, validation is window.crizmas.validation\n\n    const form = new Form({\n      validate: validation(...funcs)\n    });\n  ' }),
 	    _react2.default.createElement(
 	      'ul',
 	      { className: 'simple-list' },
@@ -30428,7 +30428,7 @@
 	      ),
 	      ' sections before jumping into API details.'
 	    ),
-	    _react2.default.createElement(_api2.default, { id: 'Router', text: '\n    import Router from \'crizmas-router\';\n    // in ES5, Router is window.CrizmasRouter\n\n    const router = new Router({\n      basePath: \'base-path\',\n      routes: [\n        {\n          path: \'home\',\n          component: HomeComponent,\n          controller: HomeController,\n          children: [\n            {\n              path: \'child/grandchild\',\n              resolve() {\n                return Promise.resolve({\n                  component: ChildComponent\n                });\n              }\n            }\n          ]\n        }\n      ]\n    });\n  ' }),
+	    _react2.default.createElement(_api2.default, { id: 'Router', text: '\n    import Router from \'crizmas-router\';\n    // in ES5, Router is window.crizmas.Router\n\n    const router = new Router({\n      basePath: \'base-path\',\n      routes: [\n        {\n          path: \'home\',\n          component: HomeComponent,\n          controller: HomeController,\n          children: [\n            {\n              path: \'child/grandchild\',\n              resolve() {\n                return Promise.resolve({\n                  component: ChildComponent\n                });\n              }\n            }\n          ]\n        }\n      ]\n    });\n  ' }),
 	    _react2.default.createElement(
 	      'ul',
 	      { className: 'simple-list' },
@@ -30895,7 +30895,7 @@
 	        'The parent route fragment.'
 	      )
 	    ),
-	    _react2.default.createElement(_api2.default, { id: 'Link', text: '\n    import {Link} from \'crizmas-router\';\n    // in ES5, Link is window.CrizmasRouter.Link\n\n    <Link to={path}>link text</Link>\n  ' }),
+	    _react2.default.createElement(_api2.default, { id: 'Link', text: '\n    import {Link} from \'crizmas-router\';\n    // in ES5, Link is window.crizmas.Router.Link\n\n    <Link to={path}>link text</Link>\n  ' }),
 	    _react2.default.createElement(
 	      'ul',
 	      { className: 'simple-list' },
@@ -30976,7 +30976,7 @@
 	    _react2.default.createElement(
 	      'b',
 	      null,
-	      _react2.default.createElement(_code2.default, { text: '\n      import PromiseQueue from \'crizmas-promise-queue\';\n      // in ES5, PromiseQueue is CrizmasPromiseQueue\n\n      const promiseQueue = new PromiseQueue({\n        done(value) {},\n\n        catch(err) {},\n\n        update(value) {}\n      });\n\n      function delay(time) {\n        return new Promise(resolve => setTimeout(resolve, time));\n      }\n\n      promiseQueue.add(delay(4000));\n      promiseQueue.add(delay(2000));\n      promiseQueue.add(delay(5000))\n        .then(value => console.log(value));\n    ' })
+	      _react2.default.createElement(_code2.default, { text: '\n      import PromiseQueue from \'crizmas-promise-queue\';\n      // in ES5, PromiseQueue is window.crizmas.PromiseQueue\n\n      const promiseQueue = new PromiseQueue({\n        done(value) {},\n\n        catch(err) {},\n\n        update(value) {}\n      });\n\n      function delay(time) {\n        return new Promise(resolve => setTimeout(resolve, time));\n      }\n\n      promiseQueue.add(delay(4000));\n      promiseQueue.add(delay(2000));\n      promiseQueue.add(delay(5000))\n        .then(value => console.log(value));\n    ' })
 	    ),
 	    _react2.default.createElement(
 	      'p',
@@ -30995,4 +30995,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.bundle-0e8c6e8d4a747913332e.js.map
+//# sourceMappingURL=main.bundle-c1959df921772b492502.js.map
