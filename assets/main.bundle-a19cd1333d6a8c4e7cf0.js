@@ -26892,6 +26892,9 @@
 	    link: 'mvc.unmount',
 	    label: 'mvc.unmount()'
 	  }, {
+	    link: 'mvc.isMounted',
+	    label: 'mvc.isMounted'
+	  }, {
 	    link: 'Mvc.controller',
 	    label: 'Mvc.controller()'
 	  }, {
@@ -26974,6 +26977,9 @@
 	    }, {
 	      link: 'router.targetRouteFragment',
 	      label: 'router.targetRouteFragment'
+	    }, {
+	      link: 'router.isMounted',
+	      label: 'router.isMounted'
 	    }, {
 	      link: 'router.transitionTo',
 	      label: 'router.transitionTo()'
@@ -28232,6 +28238,16 @@
 	        null,
 	        'It calls ',
 	        _react2.default.createElement(_ticks2.default, { text: 'ReactDOM.unmountComponentAtNode' })
+	      )
+	    ),
+	    _react2.default.createElement(_api2.default, { id: 'mvc.isMounted', text: 'mvc.isMounted' }),
+	    _react2.default.createElement(
+	      'ul',
+	      { className: 'simple-list' },
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        'It\'s true if the mvc instance is mounted.'
 	      )
 	    ),
 	    _react2.default.createElement(_api2.default, { id: 'Mvc.controller', text: 'Mvc.controller(value)' }),
@@ -30653,6 +30669,16 @@
 	        ' when the transition process ends.'
 	      )
 	    ),
+	    _react2.default.createElement(_api2.default, { id: 'router.isMounted', text: 'router.isMounted' }),
+	    _react2.default.createElement(
+	      'ul',
+	      { className: 'simple-list' },
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        'It\'s true if the router is mounted (it\'s listening for URL changes).'
+	      )
+	    ),
 	    _react2.default.createElement(_api2.default, { id: 'router.transitionTo', text: 'router.transitionTo(path)' }),
 	    _react2.default.createElement(
 	      'ul',
@@ -30995,4 +31021,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.bundle-12981aa270ebe029e949.js.map
+//# sourceMappingURL=main.bundle-a19cd1333d6a8c4e7cf0.js.map
