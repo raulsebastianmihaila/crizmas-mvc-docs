@@ -26699,9 +26699,6 @@
 
 	    _this.updateScroll = function () {
 	      _this.content.scrollTop = 0;
-
-	      // for firefox
-	      window.document.body.scrollTop = 0;
 	    };
 
 	    _this.setSubmenu = function (currentRouteFragment) {
@@ -31021,4 +31018,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.bundle-a19cd1333d6a8c4e7cf0.js.map
+//# sourceMappingURL=main.bundle-3a52219d87aa1ca56d3f.js.map
