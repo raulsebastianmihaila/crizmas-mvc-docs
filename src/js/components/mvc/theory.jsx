@@ -111,18 +111,15 @@ export default () => <div>
   <p>Why is it important to mark the roots? Since the pending state of an object depends
   on the state of its child objects, whenever the state of an object is updated, the
   upstream of the tree needs to be updated as well. Therefore we need to somehow hold
-  a reference to the upstream, so we mark the roots.
-  An alternative to holding references to the roots would have been
-  for each object to hold references to its parents. However, if an object is shared by
-  trees A and B, and we wanted the root of A to be garbage collected when there are no other
-  references to it except from its children, it could not be gc-ed
-  because tree B would continue to reference
-  one of tree A's descendants, which in return references directly or indirectly the root of tree A.
-  Even if Javascript had weak references (which it doesn't)
-  or if weak sets were iterable (which they
-  aren't) there would have still been cases where manually setting the bindings to null was
-  needed (in our example, the binding whose value is the root of tree A).
-  For instance if the root of a tree is exported by a module, unless that binding's value
+  a reference to the upstream, so we mark the roots. But at some point we may want to stop managing
+  a tree of objects. For this purpose, we could imagine that an alternative to holding references
+  to the roots would have been for each object to hold references to its parents and rely on
+  garbage collection, by ensuring that there are no other references to any object in the tree.
+  However, if an object is shared by trees A and B, and we wanted tree A to be garbage collected,
+  it could not be gc-ed because tree B would continue to reference
+  one of tree A's objects. Even if we used weak references or if weak sets were iterable
+  there would have still been cases where manually setting the bindings to null was
+  needed. For instance if the root of a tree is exported by a module, unless that binding's value
   is changed from inside the module, the object cannot be garbage collected because later on it's
   possible that the module is imported again, and since modules are singletons, the same
   instance must be exported. An even more daunting example is a default export (with the
