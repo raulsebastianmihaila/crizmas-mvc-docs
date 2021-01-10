@@ -25,7 +25,7 @@ export default () => <div>
         removeObservedChild are not properties of Mvc anymore. Instead they can only be imported:
           <Code text={`
             import {controller, observe, root, unroot, ignore, apply, construct,
-              addObservedChild and removeObservedChild} from 'crizmas-mvc';
+              addObservedChild, removeObservedChild} from 'crizmas-mvc';
           `} />
         </li>
         <li>Link is not a property of Router anymore. Instead it can only be imported:
