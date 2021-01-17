@@ -191,7 +191,7 @@ export default () => <div>
   form data, adding and removing inputs dynamically from the form and also out of the box
   validators, but probably the most interesting capability
   of <Logo text="crizmas-form" /> is <a target="_blank"
-  href="https://medium.com/@raul.mihaila/crizmas-status-update-and-the-form-interlaid-asynchronous-validations-4abf167a54bb">managing race
+  href="https://raul-mihaila.medium.com/crizmas-form-interlaid-asynchronous-validations-7b53713251af">managing race
   conditions in interlaid async validations</a>.</p>
 
   <h4>Scroll virtualization</h4>
