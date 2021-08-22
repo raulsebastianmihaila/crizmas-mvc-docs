@@ -3,7 +3,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const DefinePlugin = webpack.DefinePlugin;
@@ -18,7 +17,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: isProduction ? '/crizmas-mvc-docs/' : '/',
-    filename: '[name].bundle-[hash].js'
+    filename: '[name].bundle-[contenthash].js',
+    clean: true
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -26,14 +26,21 @@ module.exports = {
   module: {
     rules: [
       {
+        include: /crizmas-/,
+        sideEffects: false
+      },
+      {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-react']
+        // normalization needed for windows
+        include: path.normalize(`${__dirname}/src`),
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/react']
+            }
           }
-        }
+        ]
       }
     ]
   },
@@ -52,18 +59,21 @@ module.exports = {
           : null)
       }
     }),
-    new CleanWebpackPlugin(),
     ...isProduction || isProductionTest
       ? [
-        new CopyWebpackPlugin([
-          {from: 'src/css', to: 'css'}
-        ])
+        new CopyWebpackPlugin({
+          patterns: [
+            {from: 'src/css', to: 'css'}
+          ]
+        })
       ]
       : []
   ],
   devServer: {
-    contentBase: 'src',
     port: 5555,
+    static: {
+      directory: 'dist'
+    },
     historyApiFallback: {
       index: '/'
     }
