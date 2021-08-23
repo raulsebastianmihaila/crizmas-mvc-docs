@@ -72,7 +72,7 @@ module.exports = {
   devServer: {
     port: 5555,
     static: {
-      directory: 'dist'
+      directory: 'src'
     },
     historyApiFallback: {
       index: '/'
