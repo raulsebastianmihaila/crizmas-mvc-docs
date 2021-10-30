@@ -50,7 +50,7 @@ export default () => <div>
     <li>Implicitly updates the items count.</li>
     <li>Peforms a refresh of the list with the new items trying to preserve the scroll
     position.</li>
-    <li>It's important to set this method if the items array was changed so that the items
+    <li>It's important to call this method if the items array was changed so that the items
     count is updated accordingly. Also this can be called in order to replace the items.</li>
     <li>Once this method is called it's important not to call setItemsCount directly.</li>
   </ul>

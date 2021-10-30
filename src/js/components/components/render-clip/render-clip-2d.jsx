@@ -17,7 +17,8 @@ export default () => <div>
   the itemHeight and a renderCells function that it must call in order to render
   the cells in the appropriate location. Calling the renderCells function results in calling the
   renderCell function. The renderCell function receives the index of the cell, the itemWidth,
-  the itemHeight and the rowIndex.</p>
+  the itemHeight and the rowIndex. By default the component can receive focus, but this can be
+  prevented by passing the preventTabFocus prop, which sets a tabIndex of -1.</p>
 
   <b>
     <Code text={`
@@ -27,6 +28,7 @@ export default () => <div>
 
       <RenderClip2D
         controller={renderClip2DController}
+        preventTabFocus
         renderRow={({index, itemHeight, renderCells}) => {
           return <div key={index} style={{height: itemHeight}}>{renderCells()}</div>;
         }}

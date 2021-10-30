@@ -23,7 +23,8 @@ export default () => <div>
   occupies less space than the space that is available for that row. In such cases it might be
   desired that the row stretches so that it occupies the entire space available.
   For instance, if the row has a flex display. In this case the stretch prop can be set to true in
-  order to achieve this.</p>
+  order to achieve this. By default the component can receive focus, but this can be prevented
+  by passing the preventTabFocus prop, which sets a tabIndex of -1.</p>
 
   <b>
     <Code text={`
@@ -48,9 +49,11 @@ export default () => <div>
         }} />
 
       // vertical list in which the rows are stretched in order to occupy the available space
+      // and the focus is prevented
       <RenderClip
         controller={renderClipController}
         stretch
+        preventTabFocus
         renderItem={({index, itemHeight}) => {
           return <div key={index} style={{height: itemHeight}}>{itemsArray[index]}</div>;
         }} />
