@@ -67,6 +67,10 @@ export default () => <div>
     <li>An input route fragment can have a resolve function that is used to update its
     configuration or its children's configuration. Check the <Link
     to="/router/theory">theory</Link> for more details.</li>
+    <li>An input route fragment can have an <Ticks text="isLeafReenterable" /> property with a
+    boolean value, which causes the corresponding route fragment to be reentered when transitioning
+    to it while it's already entered. This is similar to refreshing the route fragment and happens
+    when a regular transition takes place. Such an input route fragment can not have children.</li>
   </ul>
 
   <Api id="controllerObject.onEnter" text={`
@@ -381,6 +385,15 @@ export default () => <div>
     that differ only by case.</li>
   </ul>
 
+  <Api id="routeFragment.isLeafReenterable" text="routeFragment.isLeafReenterable" />
+
+  <ul className="simple-list">
+    <li>If it's true, it causes the route fragment to be reentered when transitioning to it while
+    it's already entered. This is similar to refreshing the route fragment and happens when
+    a regular transition takes place.</li>
+    <li>A route fragment that is leaf-reenterable can not have children.</li>
+  </ul>
+
   <Api id="routeFragment.component" text="routeFragment.component" />
 
   <ul className="simple-list">
@@ -511,5 +524,6 @@ export default () => <div>
     <li>Creates a fallback route that redirects to the path on entering.</li>
     <li>The (matching) path is optional and defaults to the fallback path.</li>
     <li>The <Ticks text="replace" /> property is optional.</li>
+    <li>The fallback route fragment is leaf-reenterable.</li>
   </ul>
 </div>;

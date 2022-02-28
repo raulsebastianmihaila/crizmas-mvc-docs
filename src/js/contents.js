@@ -390,6 +390,10 @@ export default [
             label: 'routeFragment.canCaseVary'
           },
           {
+            link: 'routeFragment.isLeafReenterable',
+            label: 'routeFragment.isLeafReenterable'
+          },
+          {
             link: 'routeFragment.component',
             label: 'routeFragment.component'
           },
