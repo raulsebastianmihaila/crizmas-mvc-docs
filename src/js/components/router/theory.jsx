@@ -381,7 +381,7 @@ export default () => <div>
   <p>Leaving/entering a route fragment involves a few steps. First, a route fragment
   can have a controller object associated. If the corresponding input route has a controller
   property, that route fragment will have the same controller property.
-  This is typically an <Ticks text="controller()" />. If the controller
+  This is typically a <Ticks text="controller()" />. If the controller
   is an object, the controller object will be that object. If the controller is a function,
   it will be called as a constructor in the first step of the entering process to obtain
   the controller object. The constructor can also return a promise that will be resolved

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'crizmas-router';
 
 import Logo from '../logo';
 
@@ -387,4 +388,7 @@ export default () => <div>
   front-end engineers and is optimized for ergonomics. It’s a framework that promotes a flexible
   approach, which allows for long term productivity. We hope this article sparked your interest in
   alternative progressive approaches in the context of modern front-end development.</p>
+
+  <p>Head over to the <Link to="/theory">theory</Link>, <Link to="/router">router
+  </Link> and <Link to="/form">form</Link> sections for more details.</p>
 </div>;

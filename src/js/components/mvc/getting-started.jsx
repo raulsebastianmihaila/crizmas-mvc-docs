@@ -263,7 +263,8 @@ export default () => <div>
       });
     `} />
 
-    <p>Head over to the <Link to="/theory">theory</Link>, <Link to="/router">router
-    </Link> and <Link to="/form">form</Link> sections for more details.</p>
+    <p>Head over to the <Link to="/introduction">introduction</Link>, <Link
+    to="/theory">theory</Link>, <Link to="/router">router</Link> and <Link
+    to="/form">form</Link> sections for more details.</p>
   </div>
 </div>;
