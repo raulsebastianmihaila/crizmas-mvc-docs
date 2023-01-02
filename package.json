@@ -6,7 +6,7 @@
   "dependencies": {
     "@babel/core": "^7.17.5",
     "@babel/preset-react": "^7.16.7",
-    "babel-loader": "^8.2.3",
+    "babel-loader": "^8.3.0",
     "copy-webpack-plugin": "^10.2.4",
     "crizmas-mvc": "^2.0.5",
     "crizmas-router": "^2.0.5",
